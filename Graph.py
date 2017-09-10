@@ -61,6 +61,7 @@ class Graph(object):
         max_index = len(self.nodes) + 1
         adjacency_list = [None] * max_index
         for edge_object in self.edges:
+            print adjacency_list[edge_object.node_from.value]
             if adjacency_list[edge_object.node_from.value]:
                 adjacency_list[edge_object.node_from.value].append(
                     (edge_object.node_to.value, edge_object.value))
@@ -76,7 +77,13 @@ class Graph(object):
         column numbers represent to nodes.
         Store the edge values in each spot,
         and a 0 if no edge exists."""
-        return []
+        max_index = len(self.nodes) + 1
+        adjacency_matrix = [[0 for i in range(max_index + 1)] for j in
+                            range(max_index + 1)]
+        for edge_object in self.edges:
+            adjacency_matrix[edge_object.node_from.value][
+                edge_object.node_to.value] = edge_object.value
+        return adjacency_matrix
 
 
 graph = Graph()
