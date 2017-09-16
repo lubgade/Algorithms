@@ -9,5 +9,6 @@ def fib_m(n):
 
     return memo[n]
 
+# printing the series
 for i in range(1, 11):
     print fib_m(i)
