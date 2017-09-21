@@ -1,7 +1,7 @@
 # Algorithms
 
 ## Overview
-Implementation of various data structures like linked_list, stack, queue, tree, graph, etc in python.
+Implementation of various data structures like linked_list, stack, queue, tree, graph, etc in python. Also implement various practice exercises.
 
 ## Usage
 * To use this project fork or clone this project: `git clone https://github.com/lubgade/Algorithms`
