@@ -53,6 +53,31 @@ class BST(object):
         else:
             return False
 
+def lca(root, n1, n2):
+    while root is not None:
+        if root is None:
+            return None
+        elif n1 < root.data and n2 < root.data:
+            root = root.left
+        elif n1 > root.data and n2 > root.data:
+            root = root.right
+        else:
+            break
+    return root.data
+
+
+        
+root = Node(20)
+root.left = Node(8)
+root.right = Node(22)
+root.left.left = Node(4)
+root.left.right = Node(12)
+root.right.left = Node(10)
+root.right.right = Node(14)
+
+t = lca(root, 10, 14)
+print "Least common ancestor is: %s" % t
+
 
 # Set up tree
 tree = BST(4)
