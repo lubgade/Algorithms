@@ -37,16 +37,16 @@ class BST(object):
         # print "current.value: %s" % current.value
         if current:
             if current.value == find_val:
-                print "current==find_val"
+                # print "current==find_val"
                 return True
             elif current.value < find_val:
-                print "current.value<find_val"
+                # print "current.value<find_val"
                 # print current.right.value
                 print find_val
                 self.search_helper(current.right, find_val)
 
             else:
-                print "current.value>find_val"
+                # print "current.value>find_val"
                 # print current.left.value
                 self.search_helper(current.left, find_val)
 
@@ -66,7 +66,7 @@ def lca(root, n1, n2):
     return root.data
 
 
-        
+
 root = Node(20)
 root.left = Node(8)
 root.right = Node(22)
@@ -75,8 +75,8 @@ root.left.right = Node(12)
 root.right.left = Node(10)
 root.right.right = Node(14)
 
-t = lca(root, 10, 14)
-print "Least common ancestor is: %s" % t
+# t = lca(root, 10, 14)
+# print "Least common ancestor is: %s" % t
 
 
 # Set up tree
@@ -93,3 +93,48 @@ tree.insert(5)
 tree.search(6)
 # Should be False
 tree.search(1)
+
+T = [[0, 1, 0, 0, 0],
+     [0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0],
+     [1, 0, 0, 0, 1],
+     [0, 0, 0, 0, 0]]
+
+
+T1 = [[0, 0, 0, 0, 0, 0],
+      [1, 0, 0, 0, 0, 0],
+      [0, 1, 0, 1, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 1, 0, 0, 1],
+      [0, 0, 0, 0, 0, 0]]
+
+
+def lca(T, r, n1, n2):
+    print T
+    if n1 or n2 is None:
+        return "Error: Please enter valid nodes"
+    while r is not None:
+        left = None
+        right = None
+        for i in range(len(T[r])):
+            if T[r][i] == 1 and i < r:
+                left = i
+            else:
+                right = i
+        print "Left: %s" % left
+        print "Right: %s" % right
+        print "r: %s" % r
+        if n1 < r and n2 < r:
+            r = left
+            print "r in left: %s" % r
+        elif n1 > r and n2 > r:
+            r = right
+            print "r in right: %s" % r
+        elif r is None:
+            return None
+        else:
+            break
+    return r
+
+print lca(T, 3, 0, 4)
+print lca(T1, 4, 0, None)
