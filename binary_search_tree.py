@@ -75,8 +75,8 @@ root.left.right = Node(12)
 root.right.left = Node(10)
 root.right.right = Node(14)
 
-t = lca(root, 10, 14)
-print "Least common ancestor is: %s" % t
+# t = lca(root, 10, 14)
+# print "Least common ancestor is: %s" % t
 
 
 # Set up tree
@@ -110,9 +110,13 @@ T1 = [[0, 0, 0, 0, 0, 0],
 
 
 def lca_ad(T, r, n1, n2):
-    print T
-    if n1 or n2 is None:
+    print n1, n2
+    if T is None:
+        return "Error: Please enter a valid adjacency matrix"
+    if n1 is None or n2 is None:
         return "Error: Please enter valid nodes"
+    if r is None:
+        return "Error: Please enter a valid root node"
     while r is not None:
         left = None
         right = None
@@ -136,5 +140,5 @@ def lca_ad(T, r, n1, n2):
             break
     return r
 
-print lca_ad(T, 3, 0, 4)
-print lca_ad(T1, 4, 0, None)
+# print "Lca: %s" % lca_ad(T, 3, 0, 4)
+print "Lca: %s" % lca_ad(T1, 4, 2, 5)
