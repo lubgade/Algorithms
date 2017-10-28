@@ -1,10 +1,11 @@
+# Node object
 class Node(object):
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
 
-
+# Tree object
 class BST(object):
     def __init__(self, root):
         self.root = Node(root)
@@ -36,21 +37,46 @@ class BST(object):
         # print "current.value: %s" % current.value
         if current:
             if current.value == find_val:
-                print "current==find_val"
+                # print "current==find_val"
                 return True
             elif current.value < find_val:
-                print "current.value<find_val"
+                # print "current.value<find_val"
                 # print current.right.value
                 print find_val
                 self.search_helper(current.right, find_val)
 
             else:
-                print "current.value>find_val"
+                # print "current.value>find_val"
                 # print current.left.value
                 self.search_helper(current.left, find_val)
 
         else:
             return False
+
+def lca(root, n1, n2):
+    while root is not None:
+        if root is None:
+            return None
+        elif n1 < root.value and n2 < root.value:
+            root = root.left
+        elif n1 > root.value and n2 > root.value:
+            root = root.right
+        else:
+            break
+    return root.value
+
+
+
+root = Node(20)
+root.left = Node(8)
+root.right = Node(22)
+root.left.left = Node(4)
+root.left.right = Node(12)
+root.right.left = Node(10)
+root.right.right = Node(14)
+
+# t = lca(root, 10, 14)
+# print "Least common ancestor is: %s" % t
 
 
 # Set up tree
@@ -67,3 +93,52 @@ tree.insert(5)
 tree.search(6)
 # Should be False
 tree.search(1)
+
+T = [[0, 1, 0, 0, 0],
+     [0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0],
+     [1, 0, 0, 0, 1],
+     [0, 0, 0, 0, 0]]
+
+
+T1 = [[0, 0, 0, 0, 0, 0],
+      [1, 0, 0, 0, 0, 0],
+      [0, 1, 0, 1, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 1, 0, 0, 1],
+      [0, 0, 0, 0, 0, 0]]
+
+
+def lca_ad(T, r, n1, n2):
+    print n1, n2
+    if T is None:
+        return "Error: Please enter a valid adjacency matrix"
+    if n1 is None or n2 is None:
+        return "Error: Please enter valid nodes"
+    if r is None:
+        return "Error: Please enter a valid root node"
+    while r is not None:
+        left = None
+        right = None
+        for i in range(len(T[r])):
+            if T[r][i] == 1 and i < r:
+                left = i
+            else:
+                right = i
+        print "Left: %s" % left
+        print "Right: %s" % right
+        print "r: %s" % r
+        if n1 < r and n2 < r:
+            r = left
+            print "r in left: %s" % r
+        elif n1 > r and n2 > r:
+            r = right
+            print "r in right: %s" % r
+        elif r is None:
+            return None
+        else:
+            break
+    return r
+
+# print "Lca: %s" % lca_ad(T, 3, 0, 4)
+print "Lca: %s" % lca_ad(T1, 4, 2, 5)
